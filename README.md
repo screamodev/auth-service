@@ -1,11 +1,5 @@
 # Auth Service Prototype
 
-## Overview
-
-## Features
-
-## Technology Stack
-
 ## Prerequisites
 - **Docker** and **Docker Compose** should be installed on your machine.
 
@@ -25,6 +19,10 @@ POSTGRES_PORT=5433
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 POSTGRES_DB=postgres
+
+JWT_SECRET=secret123
+
+REDIS_URL=redis://192.168.0.4:6380
 ```
 
 ### Step 3: Build and Start the Project Using Docker
@@ -40,4 +38,5 @@ This command will:
 ## Swagger Documentation
 ### The API is documented using Swagger, and the documentation can be accessed at:
 -  `http://localhost:5001/api`
----
+<img width="1673" alt="image" src="https://github.com/user-attachments/assets/eb37f84d-c878-4537-b87c-9c5bfbe59429">
+
