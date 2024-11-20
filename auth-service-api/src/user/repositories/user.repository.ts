@@ -25,13 +25,20 @@ export class UserRepository {
     return user[0];
   }
 
+  async findById(id: number): Promise<User> {
+    const users = await this.db
+      .select()
+      .from(schema.users)
+      .where(eq(schema.users.id, id));
+
+    return users[0];
+  }
+
   async findByUsername(username: string): Promise<User> {
     const users = await this.db
       .select()
       .from(schema.users)
       .where(eq(schema.users.username, username));
-
-    console.log(users);
 
     return users[0];
   }
