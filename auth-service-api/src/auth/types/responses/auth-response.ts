@@ -1,6 +1,6 @@
 import { User } from "../../../user/entities/user.entity";
 
-export type RegisterResponse = {
+export type AuthResponse = {
   user: User;
   token: string;
 };

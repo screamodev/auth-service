@@ -8,10 +8,12 @@ export class UserService {
 
   constructor(private readonly userRepository: UserRepository) {}
 
+  async getUserById(id: number) {
+    return this.userRepository.findById(id);
+  }
+
   async registerUser(username: string, password: string, fullname: string) {
     const existingUser = await this.userRepository.findByUsername(username);
-
-    console.log(existingUser);
 
     if (existingUser) {
       throw new ConflictException("Username already exists");
@@ -19,5 +21,13 @@ export class UserService {
 
     const hashedPassword = await bcrypt.hash(password, this.saltRounds);
     return this.userRepository.createUser(username, hashedPassword, fullname);
+  }
+
+  async validateUser(username: string, password: string) {
+    const user = await this.userRepository.findByUsername(username);
+    if (!user) return null;
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    return isPasswordValid ? user : null;
   }
 }
